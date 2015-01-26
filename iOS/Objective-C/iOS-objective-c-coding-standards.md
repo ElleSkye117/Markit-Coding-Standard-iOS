@@ -4,7 +4,7 @@ This document outlines the Objective-C coding standards for Markit when used for
 
 ## Introduction
 
-The reason we made this coding standard was so that we could keep the code in our apps nice and consistent, easier to ready and maintain.
+The reason we made this coding standard is to keep the code in our apps easier to debug, modify and read.
 
 ## Background
 
