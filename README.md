@@ -6,7 +6,7 @@ This style guide is different from other Objective-C style guides you may see, b
 
 ## Credits
 
-We would like to thank the creators of the [Ray Wenderlich](https://github.com/raywenderlich/objective-c-style-guide), [New York Times](https://github.com/NYTimes/objective-c-style-guide) and [Robots & Pencils'](https://github.com/RobotsAndPencils/objective-c-style-guide) Objective-C Style Guides.  These two style guides provided a solid starting point for this guide to be created and based upon.
+We would like to thank the creators of the [Ray Wenderlich](https://github.com/raywenderlich/objective-c-style-guide), [New York Times](https://github.com/NYTimes/objective-c-style-guide) and [Robots & Pencils'](https://github.com/RobotsAndPencils/objective-c-style-guide) Objective-C Style Guides. These style guides provided a solid starting point for this guide to be created and based upon.
 
 ## Background
 
