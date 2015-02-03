@@ -738,6 +738,7 @@ Some of Apple’s APIs write garbage values to the error parameter (if non-NULL)
 ## Singletons
 
 Singleton objects should use a thread-safe pattern for creating their shared instance.
+
 ```objc
 + (instancetype)sharedInstance 
 {
