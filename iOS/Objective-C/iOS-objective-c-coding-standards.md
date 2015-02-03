@@ -117,10 +117,10 @@ Use `#pragma mark -` in a class to categorize methods in functional groupings an
 
 ```objc
 if (user.isHappy) {
-//Do something
+	//Do something
 } 
 else {
-//Do something else
+	//Do something else
 }
 ```
 or
@@ -128,11 +128,11 @@ or
 ```objc
 if (user.isHappy) 
 {
-//Do something
+	//Do something
 } 
 else 
 {
-//Do something else
+	//Do something else
 }
 ```
 
@@ -144,9 +144,9 @@ else
 ```objc
 // blocks are easily readable
 [UIView animateWithDuration:1.0 animations:^{
-// something
+	// something
 } completion:^(BOOL finished) {
-// something
+	// something
 }];
 ```
 
@@ -156,10 +156,10 @@ else
 // colon-aligning makes the block indentation hard to read
 [UIView animateWithDuration:1.0
 animations:^{
-// something
+	// something
 }
 completion:^(BOOL finished) {
-// something
+	// something
 }];
 ```
 
@@ -232,8 +232,8 @@ Local variables should not contain underscores.
 ```objc
 -(void)doSomething
 {
-float enableCancelButton = YES;
-[self.cancelButton setEnabled:enableCancelButton]
+	float enableCancelButton = YES;
+	[self.cancelButton setEnabled:enableCancelButton]
 }
 ```
 
@@ -242,8 +242,8 @@ float enableCancelButton = YES;
 ```objc
 -(void)doSomething
 {
-float _enableCancelButton = YES;
-[_cancelButton setEnabled:_enableCancelButton]
+	float _enableCancelButton = YES;
+	[_cancelButton setEnabled:_enableCancelButton]
 }
 ```
 
@@ -315,7 +315,7 @@ Direct access to instance variables that 'back' properties should be avoided exc
 ```objc
 @interface Tutorial : NSObject 
 {
-NSString *tutorialName;
+	NSString *tutorialName;
 }
 ```
 
@@ -428,21 +428,21 @@ When using `enum`s, it is recommended to use the new fixed underlying type speci
 **For Example:**
 
 ```objc
-typedef NS_ENUM(NSInteger, RWTLeftMenuTopItemType) {
-RWTLeftMenuTopItemMain,
-RWTLeftMenuTopItemShows,
-RWTLeftMenuTopItemSchedule
+typedef NS_ENUM(NSInteger, MKTLeftMenuTopItemType) {
+	MKTLeftMenuTopItemMain,
+	MKTLeftMenuTopItemShows,
+	MKTLeftMenuTopItemSchedule
 };
 ```
 
 You can also make explicit value assignments (showing older k-style constant definition):
 
 ```objc
-typedef NS_ENUM(NSInteger, RWTGlobalConstants) {
-RWTPinSizeMin = 1,
-RWTPinSizeMax = 5,
-RWTPinCountMin = 100,
-RWTPinCountMax = 500,
+typedef NS_ENUM(NSInteger, MKTGlobalConstants) {
+	MKTPinSizeMin = 1,
+	MKTPinSizeMax = 5,
+	MKTPinCountMin = 100,
+	MKTPinCountMax = 500,
 };
 ```
 
@@ -452,8 +452,8 @@ Older k-style constant definitions should be **avoided** unless writing CoreFoun
 
 ```objc
 enum GlobalConstants {
-kMaxPinSize = 5,
-kMaxPinCount = 500,
+	kMaxPinSize = 5,
+	kMaxPinCount = 500,
 };
 ```
 
@@ -466,20 +466,20 @@ When a case contains more than one line, braces should be added.
 ```objc
 switch (condition) 
 {
-case 1:
-// ...
-break;
-case 2: {
-// ...
-// Multi-line example using braces
-break;
-}
-case 3:
-// ...
-break;
-default: 
-// ...
-break;
+	case 1:
+		// ...
+	break;
+	case 2: {
+		// ...
+	// Multi-line example using braces
+		break;
+	}
+	case 3:
+		// ...
+	break;
+	default: 
+	// ...
+	break;
 }
 
 ```
@@ -489,14 +489,14 @@ There are times when the same code can be used for multiple cases, and a fall-th
 ```objc
 switch (condition) 
 {
-case 1:
-// ** fall-through! **
-case 2:
-// code executed for values 1 and 2
-break;
-default: 
-// ...
-break;
+	case 1:
+		// ** fall-through! **
+	case 2:
+		// code executed for values 1 and 2
+	break;
+	default: 
+		// ...
+	break;
 }
 
 ```
@@ -504,19 +504,19 @@ break;
 When using an enumerated type for a switch, 'default' is not needed.   For example:
 
 ```objc
-RWTLeftMenuTopItemType menuType = RWTLeftMenuTopItemMain;
+MKTLeftMenuTopItemType menuType = MKTLeftMenuTopItemMain;
 
 switch (menuType) 
 {
-case RWTLeftMenuTopItemMain:
-// ...
-break;
-case RWTLeftMenuTopItemShows:
-// ...
-break;
-case RWTLeftMenuTopItemSchedule:
-// ...
-break;
+	case MKTLeftMenuTopItemMain:
+		// ...
+	break;
+	case MKTLeftMenuTopItemShows:
+		// ...
+	break;
+	case MKTLeftMenuTopItemSchedule:
+		// ...
+	break;
 }
 ```
 
@@ -577,7 +577,7 @@ Conditional bodies should always use braces even when a conditional body could b
 ```objc
 if (!error) 
 {
-return success;
+	return success;
 }
 ```
 
@@ -585,7 +585,7 @@ return success;
 
 ```objc
 if (!error)
-return success;
+	return success;
 ```
 
 or
@@ -623,12 +623,11 @@ Init methods should follow the convention provided by Apple's generated code tem
 ```objc
 - (instancetype)init 
 {
-self = [super init];
-if (self) 
-{
-// ...
-}
-
+	self = [super init];
+	if (self) 
+	{
+		// ...
+	}
 return self;
 }
 ```
@@ -686,12 +685,12 @@ When coding with conditionals, the left hand margin of the code should be the "g
 ```objc
 - (void)someMethod 
 {
-if (![someOther boolValue]) 
-{
-return;
-}
+	if (![someOther boolValue]) 
+	{
+		return;
+	}
 
-//Do something important
+	//Do something important
 }
 ```
 
@@ -700,10 +699,10 @@ return;
 ```objc
 - (void)someMethod 
 {
-if ([someOther boolValue]) 
-{
-//Do something important
-}
+	if ([someOther boolValue]) 
+	{
+		//Do something important
+	}
 }
 ```
 
@@ -717,7 +716,7 @@ When methods return an error parameter by reference, switch on the returned valu
 NSError *error;
 if (![self trySomethingWithError:&error]) 
 {
-// Handle Error
+	// Handle Error
 }
 ```
 
@@ -727,9 +726,9 @@ if (![self trySomethingWithError:&error])
 NSError *error;
 [self trySomethingWithError:&error];
 if (error) 
-{
-// Handle Error
-}
+	{
+		// Handle Error
+	}
 ```
 
 Some of Apple’s APIs write garbage values to the error parameter (if non-NULL) in successful cases, so switching on the error can cause false negatives (and subsequently crash).
@@ -742,14 +741,14 @@ Singleton objects should use a thread-safe pattern for creating their shared ins
 ```objc
 + (instancetype)sharedInstance 
 {
-static id sharedInstance = nil;
+	static id sharedInstance = nil;
 
-static dispatch_once_t onceToken;
-dispatch_once(&onceToken, ^{
-sharedInstance = [[self alloc] init];
-});
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+	sharedInstance = [[self alloc] init];
+	});
 
-return sharedInstance;
+	return sharedInstance;
 }
 ```
 This will prevent [possible and sometimes prolific crashes](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html).
