@@ -52,11 +52,13 @@ Here are some of the documents from Apple that informed the style guide. If some
 US English should be used.
 
 **Use This:**
+
 ```objc
 UIColor *myColor = [UIColor whiteColor];
 ```
 
 **Not This:**
+
 ```objc
 UIColor *myColour = [UIColor whiteColor];
 ```
@@ -112,6 +114,7 @@ Use `#pragma mark -` in a class to categorize methods in functional groupings an
 * Method braces and other braces (`if`/`else`/`switch`/`while` etc.) can open on the same line **or** the next line of the statement but close on a new line.
 
 **Preferred:**
+
 ```objc
 if (user.isHappy) {
 //Do something
@@ -252,6 +255,7 @@ In method signatures, there should be a space after the method type (-/+ symbol)
 The usage of the word "and" is reserved.  It should not be used for multiple parameters as illustrated in the `initWithWidth:height:` example below.
 
 **Do This:**
+
 ```objc
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
 - (void)sendAction:(SEL)aSelector to:(id)anObject forAllCells:(BOOL)flag;
@@ -358,6 +362,7 @@ Dot syntax is purely a convenient wrapper around accessor method calls. When you
 Dot-notation is **preferred** when accessing and mutating properties, as it makes code more concise. Bracket notation is **preferred** when calling non property related methods.
 
 **Preferred:**
+
 ```objc
 NSInteger arrayCount = [self.array count];
 view.backgroundColor = [UIColor orangeColor];
@@ -365,6 +370,7 @@ view.backgroundColor = [UIColor orangeColor];
 ```
 
 **Not Preferred:**
+
 ```objc
 NSInteger arrayCount = self.array.count;
 [view setBackgroundColor:[UIColor orangeColor]];
@@ -567,6 +573,7 @@ Text and example taken from the [Cocoa Naming Guidelines](https://developer.appl
 Conditional bodies should always use braces even when a conditional body could be written without braces (e.g., it is one line only) to prevent errors. These errors include adding a second line and expecting it to be part of the if-statement. Another, [even more dangerous defect](http://programmers.stackexchange.com/a/16530) may happen where the line "inside" the if-statement is commented out, and the next line unwittingly becomes part of the if-statement. In addition, this style is more consistent with all other conditionals, and therefore more easily scannable.
 
 **Do This:**
+
 ```objc
 if (!error) 
 {
@@ -575,6 +582,7 @@ return success;
 ```
 
 **Not This:**
+
 ```objc
 if (!error)
 return success;
@@ -593,6 +601,7 @@ The Ternary operator, `?:` , should only be used when it increases clarity or co
 Non-boolean variables should be compared against something, and parentheses are added for improved readability.  If the variable being compared is a boolean type, then no parentheses are needed.
 
 **Do This:**
+
 ```objc
 NSInteger value = 5;
 result = (value != 0) ? x : y;
@@ -602,6 +611,7 @@ result = isHorizontal ? x : y;
 ```
 
 **Not This:**
+
 ```objc
 result = a > b ? x = c > d ? c : d : y;
 ```
@@ -702,6 +712,7 @@ if ([someOther boolValue])
 When methods return an error parameter by reference, switch on the returned value, not the error variable.
 
 **Preferred:**
+
 ```objc
 NSError *error;
 if (![self trySomethingWithError:&error]) 
@@ -711,6 +722,7 @@ if (![self trySomethingWithError:&error])
 ```
 
 **Not Preferred:**
+
 ```objc
 NSError *error;
 [self trySomethingWithError:&error];
@@ -747,6 +759,7 @@ This will prevent [possible and sometimes prolific crashes](http://cocoasamurai.
 Line breaks are an important to improve code readabilty. Add additional line breaks to group code to be easier to understand. Consider aligning colons for longer methods. Please do **NOT** colon align methods containing blocks because Xcode's indenting makes it illegible.
 
 **Preferred:**
+
 ```objc
 [layoutConstraints addObject:[NSLayoutConstraint constraintWithItem:self.thumbnailView
 attribute:NSLayoutAttributeWidth
@@ -758,6 +771,7 @@ constant:0.0f]];
 ```
 
 **Not Preferred:**
+
 ```objc
 [layoutConstraints addObject:[NSLayoutConstraint constraintWithItem:self.thumbnailView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:1.0f constant:0.0f]];
 ```
@@ -810,12 +824,14 @@ When possible, use interface builder when creating user interfaces. Do not destr
 Use a three character prefix (MKT) for class names and enumerated types when creating a shared resource.
 
 **Do This:**
+
 ```objc
 @interface OnlineAccountLoginViewController : UIViewController
 @end
 ```
 
 **Not This:**
+
 ```objc
 @interface MKTOnlineAccountLoginViewController : UIViewController
 @end
