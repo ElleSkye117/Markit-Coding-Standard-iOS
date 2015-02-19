@@ -630,7 +630,8 @@ Init methods should follow the convention provided by Apple's generated code tem
 	{
 		// ...
 	}
-return self;
+
+    return self;
 }
 ```
 
@@ -728,9 +729,9 @@ if (![self trySomethingWithError:&error])
 NSError *error;
 [self trySomethingWithError:&error];
 if (error) 
-	{
-		// Handle Error
-	}
+{
+    // Handle Error
+}
 ```
 
 Some of Apple’s APIs write garbage values to the error parameter (if non-NULL) in successful cases, so switching on the error can cause false negatives (and subsequently crash).
