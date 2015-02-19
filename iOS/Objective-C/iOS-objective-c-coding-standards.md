@@ -45,6 +45,8 @@ Here are some of the documents from Apple that informed the style guide. If some
 * [Singletons](#singletons)
 * [Line Breaks](#line-breaks)
 * [Xcode Project](#xcode-project)
+* [User Interface](#user-interface)
+* [Frameworks](#frameworks)
 
 
 ## Language
@@ -250,7 +252,7 @@ Local variables should not contain underscores.
 
 ## Methods
 
-In method signatures, there should be a space after the method type (-/+ symbol). There should be a space between the method segments (matching Apple's style).  Always include a keyword and be descriptive with the word before the argument which describes the argument.
+In method signatures, it is **prefered** that there should be a space after the method type (-/+ symbol). There should be a space between the method segments (matching Apple's style).  Always include a keyword and be descriptive with the word before the argument which describes the argument.
 
 The usage of the word "and" is reserved.  It should not be used for multiple parameters as illustrated in the `initWithWidth:height:` example below.
 
@@ -324,14 +326,14 @@ Direct access to instance variables that 'back' properties should be avoided exc
 
 Property attributes should be explicitly listed, and will help new programmers when reading the code.  The order of properties should be storage then atomicity, which is consistent with automatically generated code when connecting UI elements from Interface Builder.
 
-**Do This:**
+**Preferred:**
 
 ```objc
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) NSString *tutorialName;
 ```
 
-**Not This:**
+**Not Preferred:**
 
 ```objc
 @property (nonatomic, weak) IBOutlet UIView *containerView;
@@ -618,7 +620,7 @@ result = a > b ? x = c > d ? c : d : y;
 
 ## Init Methods
 
-Init methods should follow the convention provided by Apple's generated code template.  A return type of 'instancetype' should also be used instead of 'id'.
+Init methods should follow the convention provided by Apple's generated code template.  A return type of 'instancetype' should also be used instead of 'id'. Consider using NS_DESIGNATED_INITIALIZER to mark which init method that has to be used. Consider defining #define UNAVAILABLE __attribute__((unavailable("This method is unavailable"))) and using it to prevent a initilizer from being used.
 
 ```objc
 - (instancetype)init 
