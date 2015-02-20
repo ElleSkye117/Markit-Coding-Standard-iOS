@@ -820,23 +820,22 @@ Always turn on "Treat Warnings as Errors" in the target's Build Settings and ena
 
 Use autolayout for everything. We should only use frames where autolayout is not possible.
 
-When possible, use interface builder when creating user interfaces. Do not destroy and recreate constraints in code if the constraints exist in the .xib file. Instead, consider changing the constant value of individual constraints in code at runtime. Or, don't use a xib files and do everything in code.  
+When possible, use interface builder when creating user interfaces. Do not destroy and recreate constraints in code if the constraints exist in the .xib file. Instead, consider changing the constant value of individual constraints in code at runtime. Or, don't use a xib file and do everything in code.  
 
 ##Frameworks
 
-Use a three character prefix (MKT) for class names and enumerated types when creating a shared resource.
+Use a three character prefix (MKT) for class names and enumerated types when creating a shared resource that will be used in multiple projects.
 
 **Do This:**
-
-```objc
-@interface OnlineAccountLoginViewController : UIViewController
-@end
-```
-
-**Not This:**
 
 ```objc
 @interface MKTOnlineAccountLoginViewController : UIViewController
 @end
 ```
 
+**Not This:**
+
+```objc
+@interface OnlineAccountLoginViewController : UIViewController
+@end
+```
