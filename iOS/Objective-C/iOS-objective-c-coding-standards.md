@@ -2,7 +2,7 @@
 
 The reason for creating this coding standard is that we want to keep the code in our apps more consistent, easier to debug, and easier to maintain. This also provides a reference when peer reviewing another developers work.
 
-Some coding standards are required and marked as **"Do This:, Not This:"** and can be used when peer reviewing another developers code. Other coding standards are highly reconmended and marked as **"Preferred: , Not Preferred:"**; they are not to be used when peer reviewing another developers code.
+Some coding standards are required and marked as **"Do This:, Not This:"** and can be used when peer reviewing another developers code. Other coding standards are highly reconmended and marked as **"Preferred:, Not Preferred:"**; they are not to be used when peer reviewing another developers code.
 
 ## Credits
 
@@ -10,7 +10,7 @@ We would like to thank the creators of the [Ray Wenderlich](https://github.com/r
 
 ## Background
 
-Here are some of the documents from Apple that informed the style guide. If something isn't mentioned here, it's probably covered in great detail in one of these:
+Here are some of the documents from Apple that informed the style guide. This guide should reflect what Apple recommends. If something isn't mentioned here, it's probably covered in great detail in one of these:
 
 * [The Objective-C Programming Language](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjectiveC/Introduction/introObjectiveC.html)
 * [Cocoa Fundamentals Guide](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CocoaFundamentals/Introduction/Introduction.html)
@@ -68,7 +68,7 @@ UIColor *myColour = [UIColor whiteColor];
 
 ## Class Organization
 
-Use `#pragma mark -` in a class to categorize methods in functional groupings and protocol/delegate implementations following this general structure.
+Use `#pragma mark -` in a class to categorize methods in functional groupings and protocol/delegate implementations following this general structure. Header files do not need to include `#pragma mark -`.
 
 ```objc
 #pragma mark - Lifecycle
@@ -300,7 +300,7 @@ NSString* text;
 
 [Private properties](#private-properties) should be used in place of instance variables whenever possible. Although using instance variables is a valid way of doing things, by agreeing to prefer properties our code will be more consistent. 
 
-Direct access to instance variables that 'back' properties should be avoided except in initializer methods (`init`, `initWithCoder:`, etc…), `dealloc` methods and within custom setters and getters. For more information on using Accessor Methods in Initializer Methods and dealloc, see [here](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW6).
+Direct access to instance variables that 'back' properties should be avoided except in initializer methods (`init`, `initWithCoder:`, etc…), `dealloc` methods and within custom setters and getters. For more information on using Accessor Methods in Initializer Methods and dealloc, read [this](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmPractical.html#//apple_ref/doc/uid/TP40004447-SW6).
 
 **Do This:**
 
@@ -340,7 +340,7 @@ Property attributes should be explicitly listed, and will help new programmers w
 @property (nonatomic) NSString *tutorialName;
 ```
 
-Properties with mutable counterparts (e.g. NSString) should prefer `copy` instead of `strong`. 
+Properties with mutable counterparts (e.g. NSString) should always use `copy` instead of `strong`. 
 Why? Even if you declared a property as `NSString` somebody might pass in an instance of an `NSMutableString` and then change it without you noticing that.  
 
 **Do This:**
@@ -620,7 +620,7 @@ result = a > b ? x = c > d ? c : d : y;
 
 ## Init Methods
 
-Init methods should follow the convention provided by Apple's generated code template.  A return type of 'instancetype' should also be used instead of 'id'. Consider using NS_DESIGNATED_INITIALIZER to mark which init method that has to be used. Consider defining #define UNAVAILABLE __attribute__((unavailable("This method is unavailable"))) and using it to prevent a initilizer from being used.
+Init methods should follow the convention provided by Apple's generated code template.  A return type of 'instancetype' should also be used instead of 'id'. Consider using NS_DESIGNATED_INITIALIZER to mark which init method that has to be used. Consider defining ```#define UNAVAILABLE __attribute__((unavailable("This method is unavailable")))``` and using it to prevent an initializer from being used.
 
 ```objc
 - (instancetype)init 
@@ -765,12 +765,12 @@ Line breaks are an important to improve code readabilty. Add additional line bre
 
 ```objc
 [layoutConstraints addObject:[NSLayoutConstraint constraintWithItem:self.thumbnailView
-attribute:NSLayoutAttributeWidth
-relatedBy:NSLayoutRelationEqual
-toItem:self.contentView
-attribute:NSLayoutAttributeWidth
-multiplier:1.0f
-constant:0.0f]];
+         attribute:NSLayoutAttributeWidth
+         relatedBy:NSLayoutRelationEqual
+           toItem:self.contentView
+        attribute:NSLayoutAttributeWidth
+       multiplier:1.0f
+         constant:0.0f]];
 ```
 
 **Not Preferred:**
@@ -781,7 +781,7 @@ constant:0.0f]];
 
 ## Xcode Project
 
-The physical files should be kept in one folder called 'Code' in order to allow for easily moving of files/groups in the project. Third party frameworks should keep their physical file hierarchy. The project should be grouped by Models and ViewControllers. This way we could apply an entierly different UI using the existing model. Use something similar to the project structure below.
+The physical files should be kept in one folder called 'Code' in order to allow for easily moving of files/groups in the project. Third party frameworks should keep their physical file hierarchy. The project should be grouped by Models and ViewControllers. This way we could apply an entirely different UI using the existing model. Try to group the app by layers, unless you have a subsystem that has concrete object collaborating dependencies. Use something similar to the project structure below.
 
 MyProject  
 &nbsp;&nbsp;&nbsp;└── MyProject  
