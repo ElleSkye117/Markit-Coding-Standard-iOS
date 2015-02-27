@@ -27,7 +27,7 @@ Here are some of the documents from Apple that informed the style guide. This gu
 * [Underscores](#underscores)
 * [Methods](#methods)
 * [Asterisks](#Asterisks)
-* [Class Properties](#class-properties)
+* [Properties](#properties)
 * [Property Attributes](#property-attributes)
 * [Dot-Notation Syntax](#dot-notation-syntax)
 * [Literals](#literals)
@@ -298,7 +298,7 @@ NSString * text;
 NSString* text;
 ```
 
-## Class Properties
+## Properties
 
 Properties should be used in place of instance variables whenever possible. Although using instance variables is a valid way of doing things, by agreeing to prefer properties our code will be more consistent. 
 
