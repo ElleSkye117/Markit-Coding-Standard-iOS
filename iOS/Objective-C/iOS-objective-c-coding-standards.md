@@ -214,8 +214,8 @@ Local variables should not contain underscores.
 ```objc
 -(void)doSomething
 {
-float enableCancelButton = YES;
-[self.cancelButton setEnabled:enableCancelButton]
+    float enableCancelButton = YES;
+    [self.cancelButton setEnabled:enableCancelButton]
 }
 ```
 
@@ -224,8 +224,8 @@ float enableCancelButton = YES;
 ```objc
 -(void)doSomething
 {
-float _enableCancelButton = YES;
-[_cancelButton setEnabled:_enableCancelButton]
+    float _enableCancelButton = YES;
+    [_cancelButton setEnabled:_enableCancelButton]
 }
 ```
 
@@ -297,7 +297,7 @@ Direct access to instance variables that 'back' properties should be avoided exc
 ```objc
 @interface Tutorial : NSObject 
 {
-NSString *tutorialName;
+    NSString *tutorialName;
 }
 ```
 
@@ -410,9 +410,9 @@ When using `enum`s, it is recommended to use the new fixed underlying type speci
 ```objc
 typedef NS_ENUM(NSInteger, LeftMenuTopItem)
 {
-LeftMenuTopItemMain,
-LeftMenuTopItemShows,
-LeftMenuTopItemSchedule
+    LeftMenuTopItemMain,
+    LeftMenuTopItemShows,
+    LeftMenuTopItemSchedule
 };
 ```
 
@@ -421,11 +421,11 @@ You can also make explicit value assignments (showing older k-style constant def
 ```objc
 typedef NS_ENUM(NSUInteger, RiverSortOption)
 {
-RiverSortOptionNone = 0,
-RiverSortOptionRegion = 1,
-RiverSortOptionRecent = 2,
-RiverSortOptionChange = 4,
-RiverSortOptionAlphabet = 8
+    RiverSortOptionNone = 0,
+    RiverSortOptionRegion = 1,
+    RiverSortOptionRecent = 2,
+    RiverSortOptionChange = 4,
+    RiverSortOptionAlphabet = 8
 };
 ```
 
@@ -435,8 +435,8 @@ Older k-style constant definitions should be **avoided** unless writing CoreFoun
 
 ```objc
 enum GlobalConstants {
-kMaxPinSize = 5,
-kMaxPinCount = 500,
+    kMaxPinSize = 5,
+    kMaxPinCount = 500,
 };
 ```
 
@@ -449,20 +449,20 @@ When a case contains more than one line, braces should be added.
 ```objc
 switch (condition) 
 {
-case 1:
-// ...
-break;
-case 2: {
-// ...
-// Multi-line example using braces
-break;
-}
-case 3:
-// ...
-break;
-default: 
-// ...
-break;
+    case 1:
+    // ...
+    break;
+    case 2: {
+    // ...
+    // Multi-line example using braces
+    break;
+    }
+    case 3:
+    // ...
+    break;
+    default: 
+    // ...
+    break;
 }
 
 ```
@@ -472,14 +472,14 @@ There are times when the same code can be used for multiple cases, and a fall-th
 ```objc
 switch (condition) 
 {
-case 1:
-// ** fall-through! **
-case 2:
-// code executed for values 1 and 2
-break;
-default: 
-// ...
-break;
+    case 1:
+    // ** fall-through! **
+    case 2:
+    // code executed for values 1 and 2
+    break;
+    default: 
+    // ...
+    break;
 }
 
 ```
@@ -491,15 +491,15 @@ MKTLeftMenuTopItemType menuType = MKTLeftMenuTopItemMain;
 
 switch (menuType) 
 {
-case LeftMenuTopItemMain:
-// ...
-break;
-case LeftMenuTopItemShows:
-// ...
-break;
-case LeftMenuTopItemSchedule:
-// ...
-break;
+    case LeftMenuTopItemMain:
+    // ...
+    break;
+    case LeftMenuTopItemShows:
+    // ...
+    break;
+    case LeftMenuTopItemSchedule:
+    // ...
+    break;
 }
 ```
 
@@ -560,7 +560,7 @@ Conditional bodies should always use braces even when a conditional body could b
 ```objc
 if (!error) 
 {
-return success;
+    return success;
 }
 ```
 
@@ -568,7 +568,7 @@ return success;
 
 ```objc
 if (!error)
-return success;
+    return success;
 ```
 
 or
@@ -608,13 +608,13 @@ Init methods should follow the convention provided by Apple's generated code tem
 ```objc
 - (instancetype)init 
 {
-self = [super init];
-if (self) 
-{
-// ...
-}
+    self = [super init];
+    if (self) 
+    {
+        // ...
+    }
 
-return self;
+    return self;
 }
 ```
 
@@ -623,13 +623,13 @@ return self;
 ```objc
 - (id)init 
 {
-self = [super init];
-if (self) 
-{
-// ...
-}
+    self = [super init];
+    if (self) 
+    {
+        // ...
+    }
 
-return self;
+    return self;
 }
 ```
 
@@ -687,12 +687,12 @@ When coding with conditionals, the left hand margin of the code should be the "g
 ```objc
 - (void)someMethod 
 {
-if (![someOther boolValue]) 
-{
-return;
-}
+    if (![someOther boolValue]) 
+    {
+        return;
+    }
 
-//Do something important
+    //Do something important
 }
 ```
 
@@ -701,10 +701,10 @@ return;
 ```objc
 - (void)someMethod 
 {
-if ([someOther boolValue]) 
-{
-//Do something important
-}
+    if ([someOther boolValue]) 
+    {
+    //Do something important
+    }
 }
 ```
 
@@ -718,7 +718,7 @@ When methods return an error parameter by reference, switch on the returned valu
 NSError *error;
 if (![self trySomethingWithError:&error]) 
 {
-// Handle Error
+    // Handle Error
 }
 ```
 
@@ -729,7 +729,7 @@ NSError *error;
 [self trySomethingWithError:&error];
 if (error) 
 {
-// Handle Error
+    // Handle Error
 }
 ```
 
@@ -743,11 +743,11 @@ Singleton objects should use a thread-safe pattern for creating their shared ins
 ```objc
 + (instancetype)sharedInstance 
 {
-static id sharedInstance = nil;
+    static id sharedInstance = nil;
 
-static dispatch_once_t onceToken;
-dispatch_once(&onceToken, ^{
-sharedInstance = [[self alloc] init];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+    sharedInstance = [[self alloc] init];
 });
 
 return sharedInstance;
