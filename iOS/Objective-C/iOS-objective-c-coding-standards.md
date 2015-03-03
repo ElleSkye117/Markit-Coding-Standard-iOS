@@ -123,10 +123,10 @@ Use `#pragma mark -` in a class to categorize methods in functional groupings an
 
 ```objc
 if (user.isHappy) {
-//Do something
+    //Do something
 } 
 else {
-//Do something else
+    //Do something else
 }
 ```
 or
@@ -134,11 +134,11 @@ or
 ```objc
 if (user.isHappy) 
 {
-//Do something
+    //Do something
 } 
 else 
 {
-//Do something else
+    //Do something else
 }
 ```
 
