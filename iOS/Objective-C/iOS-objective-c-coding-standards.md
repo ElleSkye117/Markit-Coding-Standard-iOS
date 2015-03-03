@@ -21,7 +21,7 @@ Here are some of the documents from Apple that informed the style guide. This gu
 
 * [Language](#language)
 * [Class Organization](#class-organization)
-* [Spacing](#spacing)
+* [Braces and Spacing](#braces-and-spacing)
 * [Comments](#comments)
 * [Naming](#naming)
 * [Underscores](#underscores)
@@ -99,6 +99,9 @@ Use `#pragma mark -` in a class to categorize methods in functional groupings an
 - (void)privateMethod {}
 
 #pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField  {}
+
 #pragma mark - UITableViewDataSource
 #pragma mark - UITableViewDelegate
 
@@ -111,7 +114,7 @@ Use `#pragma mark -` in a class to categorize methods in functional groupings an
 - (NSString *)description {}
 ```
 
-## Spacing
+## Braces and Spacing
 
 * Indent using 4 spaces (this the XCode default when the user presses the tab key). Never indent with tab characters.
 * Method braces and other braces (`if`/`else`/`switch`/`while` etc.) can open on the same line **or** the next line of the statement but close on a new line.
@@ -120,10 +123,10 @@ Use `#pragma mark -` in a class to categorize methods in functional groupings an
 
 ```objc
 if (user.isHappy) {
-	//Do something
+//Do something
 } 
 else {
-	//Do something else
+//Do something else
 }
 ```
 or
@@ -131,40 +134,15 @@ or
 ```objc
 if (user.isHappy) 
 {
-	//Do something
+//Do something
 } 
 else 
 {
-	//Do something else
+//Do something else
 }
 ```
 
 * There should be exactly one blank line between methods to aid in visual clarity and organization. Whitespace within methods should separate functionality, but often there should probably be new methods.
-
-
-**Preferred:**
-
-```objc
-// blocks are easily readable
-[UIView animateWithDuration:1.0 animations:^{
-	// something
-} completion:^(BOOL finished) {
-	// something
-}];
-```
-
-**Not Preferred:**
-
-```objc
-// colon-aligning makes the block indentation hard to read
-[UIView animateWithDuration:1.0
-animations:^{
-	// something
-}
-completion:^(BOOL finished) {
-	// something
-}];
-```
 
 ## Comments
 
@@ -236,8 +214,8 @@ Local variables should not contain underscores.
 ```objc
 -(void)doSomething
 {
-	float enableCancelButton = YES;
-	[self.cancelButton setEnabled:enableCancelButton]
+float enableCancelButton = YES;
+[self.cancelButton setEnabled:enableCancelButton]
 }
 ```
 
@@ -246,8 +224,8 @@ Local variables should not contain underscores.
 ```objc
 -(void)doSomething
 {
-	float _enableCancelButton = YES;
-	[_cancelButton setEnabled:_enableCancelButton]
+float _enableCancelButton = YES;
+[_cancelButton setEnabled:_enableCancelButton]
 }
 ```
 
@@ -319,7 +297,7 @@ Direct access to instance variables that 'back' properties should be avoided exc
 ```objc
 @interface Tutorial : NSObject 
 {
-	NSString *tutorialName;
+NSString *tutorialName;
 }
 ```
 
@@ -349,14 +327,12 @@ Why? Even if you declared a property as `NSString` somebody might pass in an ins
 
 ```objc
 @property (copy, nonatomic) NSString *tutorialName;
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 ```
 
 **Not This:**
 
 ```objc
 @property (strong, nonatomic) NSString *tutorialName;
-@property (nonatomic, weak) IBOutlet UITextField *emailTextField;
 ```
 
 ## Dot-Notation Syntax
@@ -427,37 +403,40 @@ UIColor *selectedColor = [UIColor colorWithHexString:SelectedColor];
 
 ## Enumerated Types
 
-When using `enum`s, it is recommended to use the new fixed underlying type specification because it has stronger type checking and code completion. The SDK now includes a macro to facilitate and encourage use of fixed underlying types: `NS_ENUM()`
+When using `enum`s, it is recommended to use the new fixed underlying type specification because it has stronger type checking and code completion. The SDK now includes a macro to facilitate and encourage use of fixed underlying types: `NS_ENUM()`. Use the enum name when creating the values.
 
-**For Example:**
+**Do This:**
 
 ```objc
-typedef NS_ENUM(NSInteger, MKTLeftMenuTopItemType) {
-	MKTLeftMenuTopItemMain,
-	MKTLeftMenuTopItemShows,
-	MKTLeftMenuTopItemSchedule
+typedef NS_ENUM(NSInteger, LeftMenuTopItem)
+{
+LeftMenuTopItemMain,
+LeftMenuTopItemShows,
+LeftMenuTopItemSchedule
 };
 ```
 
 You can also make explicit value assignments (showing older k-style constant definition):
 
 ```objc
-typedef NS_ENUM(NSInteger, MKTGlobalConstants) {
-	MKTPinSizeMin = 1,
-	MKTPinSizeMax = 5,
-	MKTPinCountMin = 100,
-	MKTPinCountMax = 500,
+typedef NS_ENUM(NSUInteger, RiverSortOption)
+{
+RiverSortOptionNone = 0,
+RiverSortOptionRegion = 1,
+RiverSortOptionRecent = 2,
+RiverSortOptionChange = 4,
+RiverSortOptionAlphabet = 8
 };
 ```
 
 Older k-style constant definitions should be **avoided** unless writing CoreFoundation C code (unlikely).
 
-**Not Preferred:**
+**Not This:**
 
 ```objc
 enum GlobalConstants {
-	kMaxPinSize = 5,
-	kMaxPinCount = 500,
+kMaxPinSize = 5,
+kMaxPinCount = 500,
 };
 ```
 
@@ -470,20 +449,20 @@ When a case contains more than one line, braces should be added.
 ```objc
 switch (condition) 
 {
-	case 1:
-		// ...
-	break;
-	case 2: {
-		// ...
-	// Multi-line example using braces
-		break;
-	}
-	case 3:
-		// ...
-	break;
-	default: 
-	// ...
-	break;
+case 1:
+// ...
+break;
+case 2: {
+// ...
+// Multi-line example using braces
+break;
+}
+case 3:
+// ...
+break;
+default: 
+// ...
+break;
 }
 
 ```
@@ -493,14 +472,14 @@ There are times when the same code can be used for multiple cases, and a fall-th
 ```objc
 switch (condition) 
 {
-	case 1:
-		// ** fall-through! **
-	case 2:
-		// code executed for values 1 and 2
-	break;
-	default: 
-		// ...
-	break;
+case 1:
+// ** fall-through! **
+case 2:
+// code executed for values 1 and 2
+break;
+default: 
+// ...
+break;
 }
 
 ```
@@ -512,15 +491,15 @@ MKTLeftMenuTopItemType menuType = MKTLeftMenuTopItemMain;
 
 switch (menuType) 
 {
-	case MKTLeftMenuTopItemMain:
-		// ...
-	break;
-	case MKTLeftMenuTopItemShows:
-		// ...
-	break;
-	case MKTLeftMenuTopItemSchedule:
-		// ...
-	break;
+case LeftMenuTopItemMain:
+// ...
+break;
+case LeftMenuTopItemShows:
+// ...
+break;
+case LeftMenuTopItemSchedule:
+// ...
+break;
 }
 ```
 
@@ -581,7 +560,7 @@ Conditional bodies should always use braces even when a conditional body could b
 ```objc
 if (!error) 
 {
-	return success;
+return success;
 }
 ```
 
@@ -589,7 +568,7 @@ if (!error)
 
 ```objc
 if (!error)
-	return success;
+return success;
 ```
 
 or
@@ -622,20 +601,38 @@ result = a > b ? x = c > d ? c : d : y;
 
 ## Init Methods
 
-Init methods should follow the convention provided by Apple's generated code template.  A return type of 'instancetype' should also be used instead of 'id'. Consider using NS_DESIGNATED_INITIALIZER to mark which init method that has to be used. Consider defining ```#define UNAVAILABLE __attribute__((unavailable("This method is unavailable")))``` and using it to prevent an initializer from being used.
+Init methods should follow the convention provided by Apple's generated code template.  A return type of 'instancetype' should also be used instead of 'id'. Consider using ```NS_DESIGNATED_INITIALIZER``` to mark which init method that has to be used. Consider defining ```#define UNAVAILABLE __attribute__((unavailable("This method is unavailable")))``` and using it to prevent an initializer from being used.
+
+**Do This:**
 
 ```objc
 - (instancetype)init 
 {
-	self = [super init];
-	if (self) 
-	{
-		// ...
-	}
+self = [super init];
+if (self) 
+{
+// ...
+}
 
-    return self;
+return self;
 }
 ```
+
+**Not This:**
+
+```objc
+- (id)init 
+{
+self = [super init];
+if (self) 
+{
+// ...
+}
+
+return self;
+}
+```
+
 
 See [Class Constructor Methods](#class-constructor-methods) for link to article on instancetype.
 
@@ -690,12 +687,12 @@ When coding with conditionals, the left hand margin of the code should be the "g
 ```objc
 - (void)someMethod 
 {
-	if (![someOther boolValue]) 
-	{
-		return;
-	}
+if (![someOther boolValue]) 
+{
+return;
+}
 
-	//Do something important
+//Do something important
 }
 ```
 
@@ -704,10 +701,10 @@ When coding with conditionals, the left hand margin of the code should be the "g
 ```objc
 - (void)someMethod 
 {
-	if ([someOther boolValue]) 
-	{
-		//Do something important
-	}
+if ([someOther boolValue]) 
+{
+//Do something important
+}
 }
 ```
 
@@ -721,7 +718,7 @@ When methods return an error parameter by reference, switch on the returned valu
 NSError *error;
 if (![self trySomethingWithError:&error]) 
 {
-	// Handle Error
+// Handle Error
 }
 ```
 
@@ -732,7 +729,7 @@ NSError *error;
 [self trySomethingWithError:&error];
 if (error) 
 {
-    // Handle Error
+// Handle Error
 }
 ```
 
@@ -746,14 +743,14 @@ Singleton objects should use a thread-safe pattern for creating their shared ins
 ```objc
 + (instancetype)sharedInstance 
 {
-	static id sharedInstance = nil;
+static id sharedInstance = nil;
 
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-	sharedInstance = [[self alloc] init];
-	});
+static dispatch_once_t onceToken;
+dispatch_once(&onceToken, ^{
+sharedInstance = [[self alloc] init];
+});
 
-	return sharedInstance;
+return sharedInstance;
 }
 ```
 This will prevent [possible and sometimes prolific crashes](http://cocoasamurai.blogspot.com/2011/04/singletons-your-doing-them-wrong.html).
@@ -761,18 +758,18 @@ This will prevent [possible and sometimes prolific crashes](http://cocoasamurai.
 
 ## Line Breaks
 
-Line breaks are an important to improve code readabilty. Add additional line breaks to group code to be easier to understand. Consider aligning colons for longer methods. Please do **NOT** colon align methods containing blocks because Xcode's indenting makes it illegible.
+Line breaks are an important to improve code readabilty. Add additional line breaks to group code to be easier to understand. Consider aligning colons for longer methods.
 
 **Preferred:**
 
 ```objc
 [layoutConstraints addObject:[NSLayoutConstraint constraintWithItem:self.thumbnailView
-                   attribute:NSLayoutAttributeWidth
-                   relatedBy:NSLayoutRelationEqual
-                      toItem:self.contentView
-                   attribute:NSLayoutAttributeWidth
-                  multiplier:1.0f
-                    constant:0.0f]];
+attribute:NSLayoutAttributeWidth
+relatedBy:NSLayoutRelationEqual
+toItem:self.contentView
+attribute:NSLayoutAttributeWidth
+multiplier:1.0f
+constant:0.0f]];
 ```
 
 **Not Preferred:**
@@ -780,6 +777,33 @@ Line breaks are an important to improve code readabilty. Add additional line bre
 ```objc
 [layoutConstraints addObject:[NSLayoutConstraint constraintWithItem:self.thumbnailView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeWidth multiplier:1.0f constant:0.0f]];
 ```
+
+Please do **NOT** colon align methods containing blocks because Xcode's indenting makes it illegible.
+
+**Preferred:**
+
+```objc
+// blocks are easily readable
+[UIView animateWithDuration:1.0 animations:^{
+// something
+} completion:^(BOOL finished) {
+// something
+}];
+```
+
+**Not Preferred:**
+
+```objc
+// colon-aligning makes the block indentation hard to read
+[UIView animateWithDuration:1.0
+animations:^{
+// something
+}
+completion:^(BOOL finished) {
+// something
+}];
+```
+
 
 ## Xcode Project
 
