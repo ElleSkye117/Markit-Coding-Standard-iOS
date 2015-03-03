@@ -764,12 +764,12 @@ Line breaks are an important to improve code readabilty. Add additional line bre
 
 ```objc
 [layoutConstraints addObject:[NSLayoutConstraint constraintWithItem:self.thumbnailView
-attribute:NSLayoutAttributeWidth
-relatedBy:NSLayoutRelationEqual
-toItem:self.contentView
-attribute:NSLayoutAttributeWidth
-multiplier:1.0f
-constant:0.0f]];
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                      toItem:self.contentView
+                   attribute:NSLayoutAttributeWidth
+                  multiplier:1.0f
+                    constant:0.0f]];
 ```
 
 **Not Preferred:**
@@ -785,9 +785,9 @@ Please do **NOT** colon align methods containing blocks because Xcode's indentin
 ```objc
 // blocks are easily readable
 [UIView animateWithDuration:1.0 animations:^{
-// something
+    // something
 } completion:^(BOOL finished) {
-// something
+    // something
 }];
 ```
 
@@ -797,10 +797,10 @@ Please do **NOT** colon align methods containing blocks because Xcode's indentin
 // colon-aligning makes the block indentation hard to read
 [UIView animateWithDuration:1.0
 animations:^{
-// something
+    // something
 }
 completion:^(BOOL finished) {
-// something
+    // something
 }];
 ```
 
@@ -829,7 +829,7 @@ MyProject
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Data Access 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── User Defaults 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Supporting Files 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Scripts  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Scripts 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Sounds 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Images 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Fonts 
